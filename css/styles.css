@@ -1,3 +1,10 @@
 #show-contact, #show-address {
   display: none;
 }
+
+body {
+  font-family: 'Nova Cut', cursive;
+  background-image: url(https://cdn.wallpapersafari.com/89/37/CTgXH0.jpg);
+  background-size: 100%;
+  margin: auto;
+}

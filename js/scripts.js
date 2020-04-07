@@ -77,11 +77,17 @@ function showContact(contactId) {
   $(".last-name").html(contact.lastName);
   $(".phone-number").html(contact.phoneNumber);
   $(".email").html(contact.email);
-  $("ul#addresses").show();
+  $("ul#addresses").empty();
   contact.addresses.forEach(function(address){
+    if (address.address.length != 0) {
     $("ul#addresses").append("<li id=" + address.addressType + ">" + address.address + "</li>")
     console.log(address);
+  }
   })
+  
+  //if(address.address.length === 0) {
+   // $(#addresses).remove(address.addressType + address.address)
+ // }
 };
 
 
@@ -109,7 +115,6 @@ function attachContactListeners() {
     displayContactDetails(addressBook);
   });
 };
-
 
 $(document).ready(function() {
   attachContactListeners();
@@ -143,5 +148,9 @@ $(document).ready(function() {
     console.log("Addresses after addContact: ", addressBook);
     
     displayContactDetails(addressBook);
+
+    $("button").click(function(){
+      $( "form#new-contact" ).remove( ":contains('address')" );
+    });
   })
 })
