@@ -29,8 +29,9 @@ AddressBook.prototype.deleteContact = function(id) {
         delete this.contacts[i];
         return true;
       }
-    }
-  }
+    }  
+  };
+  return false;
 }
 AddressBook.prototype.update = function(id){
  object.defineProperties(contacts)
@@ -47,3 +48,28 @@ function Contact(firstName, lastName, phoneNumber) {
 Contact.prototype.fullName = function() {
   return this.firstName + " " + this.lastName;
 }
+
+// User Interface Logic ----------
+
+var addressBook = new AddressBook();
+
+function displayContactDetails(addressBookToDisplay) {
+  var contactsList = $("ul#contacts");
+  var htmlForContactInfo = "";
+  addressBookToDisplay.contacts.forEach(function(contact) {
+    htmlForContactInfo += "<li id=" + contact.id + ">" + contact.firstName + " " + contact.lastName + "</li>";
+   });
+   contactsList.html(htmlForContactInfo)
+   };
+
+$(document).ready(function() {
+  $("form#new-contact").submit(function(event) {
+    event.preventDefault();
+    var inputtedFirstName = $("input#new-first-name").val();
+    var inputtedLastName = $("input#new-last-name").val();
+    var inputtedPhoneNumber = $("input#new-phone-number").val();
+    var newContact = new Contact(inputtedFirstName, inputtedLastName, inputtedPhoneNumber);
+    addressBook.addContact(newContact);
+    console.log(addressBook.contacts);
+  })
+})
