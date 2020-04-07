@@ -150,7 +150,7 @@ $(document).ready(function() {
     displayContactDetails(addressBook);
 
     $("button").click(function(){
-      $( "form#new-contact" ).remove( ":contains('address')" );
+      $("#foraddresses" ).remove();
     });
   })
 })
