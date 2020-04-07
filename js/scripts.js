@@ -35,11 +35,6 @@ AddressBook.prototype.deleteContact = function(id) {
 }
 
 // Business logic for contacts -----
-function Address(addressOne, addressTwo) {
-  this.addressOne = addressOne;
-  this.addressTwo= addressTwo;
-}
-
 function Contact(firstName, lastName, phoneNumber, email) {
   this.firstName = firstName;
   this.lastName = lastName;
@@ -57,6 +52,10 @@ Contact.prototype.addAddress = function(address) {
   this.addresses.push(address);
 };
 
+function Address(address, addressType) {
+  this.address = address;
+  this.addressType = addressType;
+} 
 // User Interface Logic ----------
 
 var addressBook = new AddressBook();
@@ -64,7 +63,7 @@ var addressBook = new AddressBook();
 function displayContactDetails(addressBookToDisplay) {
   var contactsList = $("ul#contacts");
   var htmlForContactInfo = "";
-  console.log("CONTACTS: ", addressBookToDisplay.contacts);
+  console.log(addressBookToDisplay.contacts);
   addressBookToDisplay.contacts.forEach(function(contact) {
     htmlForContactInfo += "<li id=" + contact.id + ">" + contact.firstName + " " + contact.lastName  + "</li>";
    });
@@ -78,14 +77,21 @@ function showContact(contactId) {
   $(".last-name").html(contact.lastName);
   $(".phone-number").html(contact.phoneNumber);
   $(".email").html(contact.email);
+  $("ul#addresses").show();
+  contact.addresses.forEach(function(address){
+    $("ul#addresses").append("<li id=" + address.addressType + ">" + address.address + "</li>")
+    console.log(address);
+  })
 };
 
-function showAddress(addressId){
+
+
+/* function showAddress(addressId){
   var address = addressBook.findAddress(addressId);
   $("show-address").show();
   $("#address-one").html(address.addressOne);
   $("#address-two").html(address.addressTwo);
-}
+} /*
 
 
  /* var buttons = $("#buttons"); {
