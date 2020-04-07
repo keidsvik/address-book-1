@@ -32,6 +32,10 @@ AddressBook.prototype.deleteContact = function(id) {
     }
   }
 }
+AddressBook.prototype.update = function(id){
+ object.defineProperties(contacts)
+  
+}
 
 // Business logic for contacts -----
 function Contact(firstName, lastName, phoneNumber) {
@@ -41,6 +45,5 @@ function Contact(firstName, lastName, phoneNumber) {
 }
 
 Contact.prototype.fullName = function() {
-  
   return this.firstName + " " + this.lastName;
 }
